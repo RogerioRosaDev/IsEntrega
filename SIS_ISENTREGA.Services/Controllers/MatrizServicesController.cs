@@ -20,6 +20,8 @@ namespace SIS_ISENTREGA.Services.Controllers
         {
             try
             {
+
+
                 _repositorio.Add(newRegister);
                 return Request.CreateResponse(HttpStatusCode.OK, "OK");
             }
