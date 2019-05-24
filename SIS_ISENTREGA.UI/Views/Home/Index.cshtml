@@ -1,0 +1,12 @@
+﻿@{ 
+    var user = HttpContext.Current.Session["User"] as UsuarioViewModel;
+}
+
+<h1>Bem Vindo @user.NomeUsuario </h1>
+
+<article>
+    <h3>Sistema desenvolvido por <strong><b>Rogerio Rosa</b> </strong> </h3>
+    <p></p>
+    <h3>Avaliação Desenvolvedor de Sistemas</h3>
+
+</article>

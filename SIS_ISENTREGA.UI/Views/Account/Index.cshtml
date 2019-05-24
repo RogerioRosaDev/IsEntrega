@@ -1,0 +1,91 @@
+﻿@model SIS_ISENTREGA.Application.UsuarioViewModel
+
+@{
+    Layout = null;
+}
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+
+<div class="container-fluid">
+    <div class="container">
+        <h2 class="text-center" id="title">Bem Vindo Is Entrega</h2>
+        <p class="text-center">
+            @*<small id="passwordHelpInline" class="text-muted"> Developer: follow me on facebook <a href="https://www.facebook.com/JheanYu"> John niro yumang</a> inspired from <a href="https://p.w3layouts.com/">https://p.w3layouts.com/</a>.</small>*@
+            <small id="passwordHelpInline" class="text-muted"> Cadastre-se ou Faça seu Login.</small>
+        </p>
+        <hr>
+        <div class="row">
+            <div class="col-md-5">
+                @*@using (Html.BeginForm("Create", "Account", method: FormMethod.Post))
+                {
+                    @Html.ValidationSummary(true)
+                }*@
+
+
+                <form role="form" id="formcad">
+                    @Html.AntiForgeryToken()
+                    <fieldset>
+                        <p class="text-uppercase pull-center"> Inscreva-se</p>
+                        <div class="form-group">
+                            @Html.TextBoxFor(r => r.NomeUsuario, new { @class = "form-control input-lg", @placeholder = "Digite seu Nome" })
+                            @Html.ValidationMessageFor(r => r.NomeUsuario, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(r => r.Email, new { @class = "form-control input-lg", @placeholder = "Digite seu e-mail" })
+                            @Html.ValidationMessageFor(r => r.Email, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(r => r.Senha, new { @class = "form-control input-lg", @type = "password", @placeholder = "Digite sua senha" })
+                            @Html.ValidationMessageFor(r => r.Senha, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(r => r.ConfirmarSenha, new { @class = "form-control input-lg", @type = "password", @placeholder = "Confirme sua senha" })
+                            @Html.ValidationMessageFor(r => r.ConfirmarSenha, "", new { @class = "text-danger" })
+                        </div>
+
+                        <div>
+                            <input type="button" class="btn btn-lg btn-primary" id="btnSalvar" value="Cadastrar">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="col-md-2">
+                <!-------null------>
+            </div>
+
+            <div class="col-md-5">
+                <span class="field-validation-valid text-danger" data-valmsg-for="U" data-valmsg-replace="true" id="spnUsuario"></span>
+                <form role="form" id="formLogin">
+                    @Html.ValidationSummary(true)
+                    @Html.AntiForgeryToken()
+                    <fieldset>
+                        <p class="text-uppercase"> Acessar: </p>
+                        <div class="form-group">
+                            @Html.TextBoxFor(r => r.Login, new { @class = "form-control input-lg", @placeholder = "Digite seu Login" })
+                            @Html.ValidationMessageFor(r => r.Login, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            @Html.TextBoxFor(r => r.SenhaLogin, new { @class = "form-control input-lg", @type = "password", @placeholder = "Digite sua senha" })
+                            @Html.ValidationMessageFor(r => r.SenhaLogin, "", new { @class = "text-danger" })
+                        </div>
+                        <div>
+                            <input type="button" id="btnLogin" class="btn btn-md" value="Login">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+    <p class="text-center">
+
+    </p>
+</div>
+<script src="~/Scripts/jquery-3.0.0.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/UI/Usuarios/Usuarios_Main.js"></script>

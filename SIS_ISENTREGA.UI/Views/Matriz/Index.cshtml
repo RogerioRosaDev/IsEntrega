@@ -1,0 +1,68 @@
+﻿@model List<MatrizViewModel>
+<h2>Lista de Matriz</h2>
+
+<div class="row">
+    <div class="col-md-8 col-xs-8"></div>
+    <div class="col-md-4 col-xs-4">
+       
+        <button class="btn  btn-info btnCadastrar" title="Cadastrar" id="btnCadastrar">
+            <i class="fa fa-keyboard">Cadastrar</i>
+        </button>
+    </div>
+    
+</div>
+<br />
+<div class="row">
+    @if (Model != null && Model.Count >0)
+    {
+        <table class="table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nome Matriz</th>
+                    <th>Data Cadastro</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var mat in Model)
+                {
+                    <tr data-codigo="@mat.OidMatriz">
+
+                        <td>@mat.OidMatriz</td>
+                        <td>@mat.NomeMatriz</td>
+                        <td>@mat.DataCadastro.ToShortDateString()</td>
+                        <td>
+                            <div class="hidden-sm hidden-xs btn-group">
+                                <button class="btn btn-xs btn-primary btnVisualizar" title="Visualizar" id="btnVisualizar">
+                                    <i class="fa fa-eye bigger-120"></i>
+                                </button>
+                                <button class="btn btn-xs btn-warning btnEditar" title="Editar" id="btnEditar">
+                                    <i class="fa fa-pencil bigger-120"></i>
+                                </button>
+                                <button class="btn btn-xs btn-danger btnDeletar" title="Deletar" id="btnDeletar">
+                                    <i class="fa fa-trash-o bigger-120"></i>
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="alert alert-danger">
+            <h3 class="panel-title"> Nenhuma matriz cadastrada!</h3>
+        </div>
+    }
+
+</div>
+
+@section JS{
+<script src="~/Scripts/UI/Matriz/Matriz_Index.js"></script>
+}
+
+
+

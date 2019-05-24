@@ -1,0 +1,27 @@
+﻿@model MatrizViewModel
+<form id="formCamposMatriz">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <div class="col-xs-12 col-md-12">
+        <fieldset>
+            @Html.HiddenFor(r => r.OidMatriz)    
+            @Html.HiddenFor(r => r.DataCadastro)
+            <div class="form-group">
+                @Html.TextBoxFor(r => r.NomeMatriz, new { @class = "form-control input-lg", @placeholder = "Digite o Nome da Matriz" })
+                @Html.ValidationMessageFor(r => r.NomeMatriz, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(r => r.CEP, new { @class = "form-control input-lg", @placeholder = "Digite o cep da Matriz" })
+                @Html.ValidationMessageFor(r => r.CEP, "", new { @class = "text-danger" })
+
+            </div>
+            <div>
+                <input type="button" id="btnVoltar" class="btn btn-md btn-danger" value="Voltar">
+                <input type="button" id="btnSalvar" class="btn btn-md btn-primary" value="Cadastrar">
+            </div>
+        </fieldset>
+
+
+    </div>
+</form>
