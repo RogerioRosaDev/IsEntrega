@@ -1,4 +1,5 @@
 ﻿using SIS_ISENTREGA.Application;
+using SIS_ISENTREGA.UI.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -53,15 +54,17 @@ namespace SIS_ISENTREGA.UI.Controllers
                 }
 
                 var user = Session["User"] as UsuarioViewModel;
-                if (valid.IsValid)
+                var retorno = HttpComponent.Post<string>("http://localhost:63214/api/PontoServices/Create", newRegister,  int.MaxValue, user.Token);
+                //_ponto.Update(newRegister);
+                if (retorno == "OK")
                 {
-                    _ponto.Update(newRegister);
+                  
                     var ObjRetorno = new { Message = "sucesso", Erros = "" };
                     return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
                 }
                 else
                 {
-                    var ObjRetorno = new { Message = "false", Erros = valid.Errors };
+                    var ObjRetorno = new { Message = "false", Erros = "Erro ao cadastrar ponto!" };
                     return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
                 }
                 //_ponto.Add(newRegister);
@@ -93,9 +96,23 @@ namespace SIS_ISENTREGA.UI.Controllers
                 {
                     newRegister.NomeMatriz = _matriz.GetAll().FirstOrDefault(r => r.OidMatriz == newRegister.OidMatriz).NomeMatriz;
                 }
-                _ponto.Update(newRegister);
-                var ObjRetorno = new { Message = "sucesso", Erros = "" };
-                return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                var user = Session["User"] as UsuarioViewModel;
+                var retorno = HttpComponent.Put<string>("http://localhost:63214/api/PontoServices/Update", newRegister,"PUT", int.MaxValue, user.Token);
+                //_ponto.Update(newRegister);
+                if (retorno == "OK")
+                {
+
+                    var ObjRetorno = new { Message = "sucesso", Erros = "" };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var ObjRetorno = new { Message = "false", Erros = "Erro ao cadastrar ponto!" };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                //_ponto.Update(newRegister);
+                //var ObjRetorno = new { Message = "sucesso", Erros = "" };
+                //return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
             }
             else
             {

@@ -89,7 +89,7 @@ namespace SIS_ISENTREGA.UI.Controllers
             if (valid.IsValid)
             {
 
-                var retorno = HttpComponent.Put<string>("http://localhost:63214/api/MatrizServices/Create", newRegister,"PUT", int.MaxValue, user.Token);
+                var retorno = HttpComponent.Put<string>("http://localhost:63214/api/MatrizServices/Update", newRegister,"PUT", int.MaxValue, user.Token);
                 if (retorno == "OK")
                 {
                     var ObjRetorno = new { Message = "sucesso", Erros = "" };
@@ -100,9 +100,7 @@ namespace SIS_ISENTREGA.UI.Controllers
                     var ObjRetorno = new { Message = "false", Erros = "Erro ao cadastrar a matriz!" };
                     return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
                 }
-                //_matriz.Update(newRegister);
-                //var ObjRetorno = new { Message = "sucesso", Erros = "" };
-                //return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                
             }
             else
             {
@@ -117,34 +115,6 @@ namespace SIS_ISENTREGA.UI.Controllers
         {
             _matriz.DeletarCascate(id);
             return Json("", JsonRequestBehavior.AllowGet);
-        }
-
-        private void SaveServices(MatrizViewModel newRegister)
-        {
-            var user = Session["User"] as UsuarioViewModel;
-            var client = new HttpClient();
-            var token = string.Empty;
-            //var clientCreds = System.Text.Encoding.UTF8.GetBytes($"{newRegister.NomeMatriz}:{newRegister.DataCadastro}:{newRegister.CEP} :{newRegister.OidMatriz}");
-            client.DefaultRequestHeaders.Authorization =
-           new AuthenticationHeaderValue("Authorization", "Bearer "+ user.Token);
-            var postMessage = new Dictionary<string, string>();
-            postMessage.Add("DataCadastro", newRegister.DataCadastro.ToShortDateString());
-            postMessage.Add("NomeMatriz", newRegister.NomeMatriz);
-            postMessage.Add("CEP", newRegister.CEP);
-            postMessage.Add("OidMatriz", newRegister.OidMatriz.ToString());
-            var request = new HttpRequestMessage(HttpMethod.Post, "http://localhost:63214/api/MatrizServices/Create")
-            {
-                Content = new FormUrlEncodedContent(postMessage)
-            };
-            var response = client.SendAsync(request).Result;
-            if (response.IsSuccessStatusCode)
-            {
-                var json = response.Content.ReadAsStringAsync().Result;
-                //var rr = JsonConvert.DeserializeObject<Token>(json);
-                //token = rr.access_token;
-                //this.token.ExpiresAt = DateTime.UtcNow.AddSeconds(this.token.ExpiresIn);
-            }
-            
         }
 
     }

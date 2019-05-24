@@ -33,7 +33,6 @@ namespace SIS_ISENTREGA.Services.Controllers
         [HttpPut]
         public HttpResponseMessage Update(MatrizViewModel newRegister)
         {
-
             try
             {
                 _repositorio.Update(newRegister);
