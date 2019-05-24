@@ -52,6 +52,8 @@ namespace SIS_ISENTREGA.Services.Controllers
         {
             try
             {
+
+
                 _repositorio.Delete(id);
                 return Request.CreateResponse(HttpStatusCode.OK, "OK");
             }
