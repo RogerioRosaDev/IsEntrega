@@ -39,11 +39,22 @@ namespace SIS_ISENTREGA.UI.Controllers
             var valid = new MatrizValid().Validate(newRegister);
             if (valid.IsValid)
             {
-                newRegister.DataCadastro = DateTime.Now;
-                _matriz.Add(newRegister);
-               // SaveServices(newRegister);
-                var ObjRetorno = new { Message = "sucesso", Erros = "" };
-                return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+
+                var retorno = HttpComponent.Post<string>("http://localhost:63214/api/MatrizServices/Create", newRegister, int.MaxValue, user.Token);
+                if(retorno == "OK")
+                {
+                    var ObjRetorno = new { Message = "sucesso", Erros = "" };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                else {
+                    var ObjRetorno = new { Message = "false", Erros = "Erro ao cadastrar a matriz!" };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                
+                //newRegister.DataCadastro = DateTime.Now;
+                //_matriz.Add(newRegister);
+                // SaveServices(newRegister);
+               
              
             }
             else
@@ -77,9 +88,21 @@ namespace SIS_ISENTREGA.UI.Controllers
 
             if (valid.IsValid)
             {
-                _matriz.Update(newRegister);
-                var ObjRetorno = new { Message = "sucesso", Erros = "" };
-                return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+
+                var retorno = HttpComponent.Put<string>("http://localhost:63214/api/MatrizServices/Create", newRegister,"PUT", int.MaxValue, user.Token);
+                if (retorno == "OK")
+                {
+                    var ObjRetorno = new { Message = "sucesso", Erros = "" };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var ObjRetorno = new { Message = "false", Erros = "Erro ao cadastrar a matriz!" };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                //_matriz.Update(newRegister);
+                //var ObjRetorno = new { Message = "sucesso", Erros = "" };
+                //return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
             }
             else
             {

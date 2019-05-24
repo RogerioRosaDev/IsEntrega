@@ -51,9 +51,22 @@ namespace SIS_ISENTREGA.UI.Controllers
                 {
                     newRegister.NomeMatriz = _matriz.GetAll().FirstOrDefault(r => r.OidMatriz == newRegister.OidMatriz).NomeMatriz;
                 }
-                _ponto.Add(newRegister);
-                var ObjRetorno = new { Message = "sucesso", Erros = "" };
-                return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+
+                var user = Session["User"] as UsuarioViewModel;
+                if (valid.IsValid)
+                {
+                    _ponto.Update(newRegister);
+                    var ObjRetorno = new { Message = "sucesso", Erros = "" };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    var ObjRetorno = new { Message = "false", Erros = valid.Errors };
+                    return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+                }
+                //_ponto.Add(newRegister);
+                //var ObjRetorno = new { Message = "sucesso", Erros = "" };
+                //return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
             }
             else
             {

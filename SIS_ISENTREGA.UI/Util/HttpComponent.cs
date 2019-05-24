@@ -29,7 +29,10 @@ namespace SIS_ISENTREGA.UI.Util
             return Request<T>(url, data, contentType, method, timeout, token);
         }
 
-
+        public static T Put<T>(string url, object data, string method, int? timeoutn, string token)
+        {
+            return Request<T>(url, data, "application/json", method, timeoutn, token);
+        }
         private static T Request<T>(string url, object data, string contentType, string method, int? timeout,string token)
         {
 
@@ -38,13 +41,11 @@ namespace SIS_ISENTREGA.UI.Util
             var json = jss.Serialize(data);
             //converte o objeto em byte
             var dataSend = Encoding.UTF8.GetBytes(json);
-
             //declara o retorno
             var retono = string.Empty;
-
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = method;
-            req.Headers.Add(HttpRequestHeader.Authorization, string.Format("bearer={0}", token));
+            req.Headers.Add(HttpRequestHeader.Authorization, string.Format("bearer {0} ", token));
             req.ContentType = contentType;
             req.ContentLength = dataSend.Length;
             req.Timeout = 999999;
