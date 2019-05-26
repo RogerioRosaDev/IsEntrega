@@ -98,7 +98,6 @@ namespace SIS_ISENTREGA.UI.Controllers
                 }
                 var user = Session["User"] as UsuarioViewModel;
                 var retorno = HttpComponent.Put<string>("http://localhost:63214/api/PontoServices/Update", newRegister,"PUT", int.MaxValue, user.Token);
-                //_ponto.Update(newRegister);
                 if (retorno == "OK")
                 {
 
@@ -110,9 +109,7 @@ namespace SIS_ISENTREGA.UI.Controllers
                     var ObjRetorno = new { Message = "false", Erros = "Erro ao cadastrar ponto!" };
                     return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
                 }
-                //_ponto.Update(newRegister);
-                //var ObjRetorno = new { Message = "sucesso", Erros = "" };
-                //return Json(ObjRetorno, JsonRequestBehavior.AllowGet);
+            
             }
             else
             {

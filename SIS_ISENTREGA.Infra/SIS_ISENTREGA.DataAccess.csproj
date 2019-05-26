@@ -52,15 +52,6 @@
     <Compile Include="FluentApi\MatrizMap.cs" />
     <Compile Include="FluentApi\PontoMap.cs" />
     <Compile Include="FluentApi\UsuarioMap.cs" />
-    <Compile Include="Migrations\201905220225100_Initial2.cs" />
-    <Compile Include="Migrations\201905220225100_Initial2.Designer.cs">
-      <DependentUpon>201905220225100_Initial2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201905221137097_Ajuste.cs" />
-    <Compile Include="Migrations\201905221137097_Ajuste.Designer.cs">
-      <DependentUpon>201905221137097_Ajuste.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\Base\GenericRepository.cs" />
     <Compile Include="Repository\MatrizRepository.cs" />
@@ -76,14 +67,6 @@
       <Project>{a3291700-cff4-4ace-9e20-1adae234a467}</Project>
       <Name>SIS_ISENTREGA.Domain</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201905220225100_Initial2.resx">
-      <DependentUpon>201905220225100_Initial2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201905221137097_Ajuste.resx">
-      <DependentUpon>201905221137097_Ajuste.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -42,13 +42,11 @@ namespace SIS_ISENTREGA.Services.Controllers
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "ERROR");
             }
-
         }
 
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
-
             try
             {
                 _repositorio.Delete(id);
@@ -64,7 +62,6 @@ namespace SIS_ISENTREGA.Services.Controllers
         [HttpGet]
         public HttpResponseMessage FindAll()
         {
-
             try
             {
                var lstRetorno= _repositorio.GetAll();
